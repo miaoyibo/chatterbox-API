@@ -191,9 +191,18 @@ class ChineseCangjieConverter:
         """Initialize pkuseg segmenter."""
         try:
             from spacy_pkuseg import pkuseg
-            self.segmenter = pkuseg()
-        except ImportError:
-            logger.warning("pkuseg not available - Chinese segmentation will be skipped")
+            import os
+            
+            # 如果设置了 PKUSEG_HOME，使用本地模型
+            pkuseg_home = os.getenv("PKUSEG_HOME")
+            if pkuseg_home and os.path.exists(pkuseg_home):
+                # pkuseg 会自动使用 PKUSEG_HOME 环境变量
+                self.segmenter = pkuseg()
+            else:
+                # 尝试使用默认路径
+                self.segmenter = pkuseg()
+        except (ImportError, Exception) as e:
+            logger.warning(f"pkuseg not available - Chinese segmentation will be skipped: {e}")
             self.segmenter = None
     
     def _cangjie_encode(self, glyph: str):

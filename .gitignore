@@ -46,3 +46,37 @@ checkpoints/
 
 # Ignore generated sample .wav files
 **/*.wav
+!zh01.wav
+!audio.wav
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 模型文件（通常很大，不应该提交到仓库）
+models/
+*.tar.gz
+*.zip
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.venv/
+.venv1/
+
+# 临时文件
+*.log
+*.tmp
+*.lock
+uv.lock
