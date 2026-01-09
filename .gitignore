@@ -80,3 +80,4 @@ ENV/
 *.tmp
 *.lock
 uv.lock
+.github/workflows/
